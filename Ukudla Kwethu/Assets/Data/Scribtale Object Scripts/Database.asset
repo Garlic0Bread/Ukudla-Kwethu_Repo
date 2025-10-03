@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd8634c181b444e419d063bf5fd20b77, type: 3}
+  m_Name: Database
+  m_EditorClassIdentifier: 
+  objectsData:
+  - <ID>k__BackingField: 0
+    <Name>k__BackingField: Energy Tile
+    <Prefab>k__BackingField: {fileID: 1824374866059378242, guid: 6c46c3298c956854798e5eef3897c2c6, type: 3}
+    <Size>k__BackingField: {x: 1, y: 1}
+  - <ID>k__BackingField: 1
+    <Name>k__BackingField: Energy Tile
+    <Prefab>k__BackingField: {fileID: 1824374866059378242, guid: 1a86a3c9be3719b4baca2e544dbe608f, type: 3}
+    <Size>k__BackingField: {x: 1, y: 1}
