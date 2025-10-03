@@ -14,7 +14,6 @@ public class CurrencyManager : MonoBehaviour
     public void AddCurrency(int amount)
     {
         currency += amount;
-        // Update UI here
     }
 
     public bool TryRemoveCurrency(int amount)

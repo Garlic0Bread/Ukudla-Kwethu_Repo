@@ -6,16 +6,16 @@ public class Building : MonoBehaviour
 {
     private float nextLeechTime = 0;
     private float timeOnPlatform = 0;
-    private bool batteryOnPlatform = false;
-    private bool IsFull => currentEnergyAmount >= maxEnergyToAbsorb;
+    private bool basketOnPlatform = false;
+    private bool IsFull => currentFoodAmount >= maxFoodToCollect;
 
-    [SerializeField] private Image energySlider;
+    [SerializeField] private Image foodCollectedSlider;
 
     public UnityEvent onPlatformFull;
     [SerializeField] private Battery battery;
-    [SerializeField] private int maxEnergyToAbsorb;
-    [SerializeField] private int currentEnergyAmount;
-    [SerializeField] private int energyToReceive = 0;
+    [SerializeField] private int maxFoodToCollect;
+    [SerializeField] private int currentFoodAmount;
+    [SerializeField] private int foodToReceive = 0;
     [SerializeField] private float currencyMultiplier = 1;
     
     [SerializeField] private float leechInterval;
@@ -28,21 +28,21 @@ public class Building : MonoBehaviour
 
     private void ChargeUp()
     {
-        energySlider.fillAmount = (float)currentEnergyAmount / maxEnergyToAbsorb;
+        //foodCollectedSlider.fillAmount = (float)currentFoodAmount / maxFoodToCollect;
 
-        if (!batteryOnPlatform || IsFull)
+        if (!basketOnPlatform || IsFull)
             return;
 
         timeOnPlatform += Time.deltaTime;
 
         if (timeOnPlatform >= timeBeforeStartLeeching && Time.time >= nextLeechTime)
         {
-            if (battery.TryRemoveEnergy(energyToReceive))
+            if (battery.TryRemoveEnergy(foodToReceive))
             {
-                currentEnergyAmount += energyToReceive;
+                currentFoodAmount += foodToReceive;
                 nextLeechTime = Time.time + leechInterval;
 
-                int currencyEarned = (int)(energyToReceive * currencyMultiplier);
+                int currencyEarned = (int)(foodToReceive * currencyMultiplier);
                 CurrencyManager.Instance.AddCurrency(currencyEarned);
 
                 if (IsFull)
@@ -55,18 +55,18 @@ public class Building : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Battery"))
+        if (other.CompareTag("Basket"))
         {
-            batteryOnPlatform = true;
+            basketOnPlatform = true;
             timeOnPlatform = 0f;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Battery"))
+        if (other.CompareTag("Basket"))
         {
-            batteryOnPlatform = false;
+            basketOnPlatform = false;
             timeOnPlatform = 0f;
         }
     }

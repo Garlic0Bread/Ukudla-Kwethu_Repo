@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class GridData
 {
@@ -12,11 +11,11 @@ public class GridData
         List<Vector3Int> positionsToOccupy = CalculatePosistions(gridPosition, objectSize);
         PlacementData data = new PlacementData(positionsToOccupy, ID, placedObjectIndex);
 
-        foreach(var position in positionsToOccupy)
+        foreach (var position in positionsToOccupy)
         {
-            if(placedObjects.ContainsKey(position))
+            if (placedObjects.ContainsKey(position))
             {
-                throw new Exception($"Dicationary already contains{position}");
+                //
             }
 
             placedObjects[position] = data;
@@ -39,7 +38,7 @@ public class GridData
     public bool CanPlaceObject(Vector3Int gridPosition, Vector2Int objectSize)
     {
         List<Vector3Int> positionToOccupy = CalculatePosistions(gridPosition, objectSize);
-        foreach(var position in positionToOccupy)
+        foreach (var position in positionToOccupy)
         {
             if (placedObjects.ContainsKey(position))
                 return false;

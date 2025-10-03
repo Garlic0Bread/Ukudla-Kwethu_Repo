@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Battery : MonoBehaviour
 {
-    public int energyCarried = 0;
+    public int foodCarried = 0;
     private new Collider collider;
     private MeshRenderer meshRenderer;
 
@@ -26,11 +26,11 @@ public class Battery : MonoBehaviour
         collider.enabled = false;
     }
 
-    public bool TryRemoveEnergy(int energy)
+    public bool TryRemoveEnergy(int food)
     {
-        if (energyCarried >= energy)
+        if (foodCarried >= food)
         {
-            energyCarried -= energy;
+            foodCarried -= food;
             return true;
         }
         return false;
@@ -41,15 +41,15 @@ public class Battery : MonoBehaviour
         if (other.CompareTag("EnergyTile"))
         {
             print("yes");
-            EnergyTile tile = other.GetComponent<EnergyTile>();
-            energyCarried += tile.HarvestEnergy();
+            CropTile tile = other.GetComponent<CropTile>();
+            foodCarried += tile.HarvestFood();
         }
 
         /*if (other.CompareTag("Building"))
         {
             Building building = other.GetComponent<Building>();
-            building.ReceiveEnergy(energyCarried);
-            building.batteryOnPlatform = true;
+            building.ReceiveEnergy(foodCarried);
+            building.basketOnPlatform = true;
             building.timeOnPlatform = 0f;
         }*/
     }

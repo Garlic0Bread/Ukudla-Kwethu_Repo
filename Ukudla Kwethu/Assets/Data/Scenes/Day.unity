@@ -1798,7 +1798,7 @@ GameObject:
   - component: {fileID: 112361009}
   - component: {fileID: 112361011}
   - component: {fileID: 112361010}
-  m_Layer: 4
+  m_Layer: 6
   m_Name: 'Model: Body'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4088,14 +4088,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d15263799b8b8419f9b3036e41c36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energySlider: {fileID: 0}
+  foodCollectedSlider: {fileID: 0}
   onPlatformFull:
     m_PersistentCalls:
       m_Calls: []
   battery: {fileID: 0}
-  maxEnergyToAbsorb: 0
-  currentEnergyAmount: 0
-  energyToReceive: 0
+  maxFoodToCollect: 0
+  currentFoodAmount: 0
+  foodToReceive: 0
   currencyMultiplier: 1
   leechInterval: 0
   timeBeforeStartLeeching: 0
@@ -5212,7 +5212,7 @@ GameObject:
   - component: {fileID: 343195343}
   - component: {fileID: 343195345}
   - component: {fileID: 343195344}
-  m_Layer: 4
+  m_Layer: 6
   m_Name: 'Model: Eyes'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5813,14 +5813,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d15263799b8b8419f9b3036e41c36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energySlider: {fileID: 0}
+  foodCollectedSlider: {fileID: 0}
   onPlatformFull:
     m_PersistentCalls:
       m_Calls: []
   battery: {fileID: 0}
-  maxEnergyToAbsorb: 0
-  currentEnergyAmount: 0
-  energyToReceive: 0
+  maxFoodToCollect: 0
+  currentFoodAmount: 0
+  foodToReceive: 0
   currencyMultiplier: 1
   leechInterval: 0
   timeBeforeStartLeeching: 0
@@ -8838,7 +8838,7 @@ GameObject:
   - component: {fileID: 543686652}
   - component: {fileID: 543686651}
   - component: {fileID: 543686650}
-  m_Layer: 4
+  m_Layer: 6
   m_Name: Battery
   m_TagString: Battery
   m_Icon: {fileID: 0}
@@ -8872,7 +8872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676f1a48c1710314b9cab391da6a1ac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyCarried: 0
+  foodCarried: 0
   placementSystem: {fileID: 386547448}
 --- !u!65 &543686651
 BoxCollider:
@@ -11208,14 +11208,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d15263799b8b8419f9b3036e41c36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energySlider: {fileID: 0}
+  foodCollectedSlider: {fileID: 0}
   onPlatformFull:
     m_PersistentCalls:
       m_Calls: []
   battery: {fileID: 0}
-  maxEnergyToAbsorb: 0
-  currentEnergyAmount: 0
-  energyToReceive: 0
+  maxFoodToCollect: 0
+  currentFoodAmount: 0
+  foodToReceive: 0
   currencyMultiplier: 1
   leechInterval: 0
   timeBeforeStartLeeching: 0
@@ -11717,14 +11717,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d15263799b8b8419f9b3036e41c36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energySlider: {fileID: 0}
+  foodCollectedSlider: {fileID: 0}
   onPlatformFull:
     m_PersistentCalls:
       m_Calls: []
   battery: {fileID: 0}
-  maxEnergyToAbsorb: 0
-  currentEnergyAmount: 0
-  energyToReceive: 0
+  maxFoodToCollect: 0
+  currentFoodAmount: 0
+  foodToReceive: 0
   currencyMultiplier: 1
   leechInterval: 0
   timeBeforeStartLeeching: 0
@@ -16725,14 +16725,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d15263799b8b8419f9b3036e41c36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energySlider: {fileID: 0}
+  foodCollectedSlider: {fileID: 0}
   onPlatformFull:
     m_PersistentCalls:
       m_Calls: []
   battery: {fileID: 0}
-  maxEnergyToAbsorb: 0
-  currentEnergyAmount: 0
-  energyToReceive: 0
+  maxFoodToCollect: 0
+  currentFoodAmount: 0
+  foodToReceive: 0
   currencyMultiplier: 1
   leechInterval: 0
   timeBeforeStartLeeching: 0
@@ -23269,14 +23269,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d15263799b8b8419f9b3036e41c36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energySlider: {fileID: 0}
+  foodCollectedSlider: {fileID: 0}
   onPlatformFull:
     m_PersistentCalls:
       m_Calls: []
   battery: {fileID: 0}
-  maxEnergyToAbsorb: 0
-  currentEnergyAmount: 0
-  energyToReceive: 0
+  maxFoodToCollect: 0
+  currentFoodAmount: 0
+  foodToReceive: 0
   currencyMultiplier: 1
   leechInterval: 0
   timeBeforeStartLeeching: 0
@@ -25894,7 +25894,7 @@ GameObject:
   - component: {fileID: 1925778711}
   - component: {fileID: 1925778713}
   - component: {fileID: 1925778712}
-  m_Layer: 4
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
