@@ -1,8 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Battery : MonoBehaviour
 {
-    public int foodCarried = 0;
+    private Dictionary<string, int> carriedCrops = new Dictionary<string, int>();
+    [SerializeField] private int maxCapacity = 20;
+    [SerializeField] private int currentCapacity;
+
     private new Collider collider;
     private MeshRenderer meshRenderer;
 
@@ -12,6 +17,70 @@ public class Battery : MonoBehaviour
     {
         collider = GetComponent<Collider>();
         meshRenderer = GetComponent<MeshRenderer>();
+    }
+    private void Update()
+    {
+        currentCapacity = GetTotalCarried();
+    }
+
+    public int GetTotalCarried()
+    {
+        int sum = 0;
+        foreach (var kvp in carriedCrops) sum += kvp.Value;
+        return sum;
+    }
+
+    public bool TryAddCrop(CropData crop, int amount = 1)
+    {
+        if (GetTotalCarried() + amount > maxCapacity) return false;
+
+        if (!carriedCrops.ContainsKey(crop.cropID))
+            carriedCrops[crop.cropID] = 0;
+
+        carriedCrops[crop.cropID] += amount;
+        return true;
+    }
+
+    public CropData TryRemoveAnyCrop()
+    {
+        foreach (var kvp in carriedCrops)
+        {
+            if (kvp.Value > 0)
+            {
+                carriedCrops[kvp.Key]--;
+
+                if(carriedCrops[kvp.Key] <= 0)
+                {
+                    if (carriedCrops[kvp.Key] <= 0)
+                    {
+                        carriedCrops.Remove(kvp.Key);
+                    }
+
+                    CropData crop = Crop_Database.Instance.GetCropByID(kvp.Key);
+                    return crop;
+                }
+
+            }
+        }
+        return null; // nothing carried
+    }
+    public CropData TryPeekAnyCrop()
+    {//looks at the first available crop and returns its data without removing it from the basket.
+        // Use carriedCrops.FirstOrDefault() to find the first entry with a positive count
+        var firstAvailable = carriedCrops.FirstOrDefault(kvp => kvp.Value > 0);
+
+        if (firstAvailable.Key != null)
+        {
+            //get CropData using the key (cropID)
+            return Crop_Database.Instance.GetCropByID(firstAvailable.Key);
+        }
+
+        return null; // Basket is empty
+    }
+
+    public Dictionary<string, int> GetContents()
+    {
+        return carriedCrops;
     }
 
     public void Enable_Battery()
@@ -26,31 +95,17 @@ public class Battery : MonoBehaviour
         collider.enabled = false;
     }
 
-    public bool TryRemoveEnergy(int food)
-    {
-        if (foodCarried >= food)
-        {
-            foodCarried -= food;
-            return true;
-        }
-        return false;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("EnergyTile"))
+        if (other.CompareTag("CropTile"))
         {
-            print("yes");
             CropTile tile = other.GetComponent<CropTile>();
-            foodCarried += tile.HarvestFood();
-        }
+            var (crop, amount) = tile.HarvestFood();
 
-        /*if (other.CompareTag("Building"))
-        {
-            Building building = other.GetComponent<Building>();
-            building.ReceiveEnergy(foodCarried);
-            building.basketOnPlatform = true;
-            building.timeOnPlatform = 0f;
-        }*/
+            if (crop != null)
+            {
+                TryAddCrop(crop, amount);
+            }
+        }
     }
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd8634c181b444e419d063bf5fd20b77, type: 3}
-  m_Name: Database
+  m_Name: Database_Crop Tiles
   m_EditorClassIdentifier: 
   objectsData:
   - <ID>k__BackingField: 0

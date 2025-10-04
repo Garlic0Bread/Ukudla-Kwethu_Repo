@@ -16,6 +16,8 @@ public class CurrencyManager : MonoBehaviour
         currency += amount;
     }
 
+    public int GetCurrency() => currency;
+
     public bool TryRemoveCurrency(int amount)
     {
         if (currency >= amount)

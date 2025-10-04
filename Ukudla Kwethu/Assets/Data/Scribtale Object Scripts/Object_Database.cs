@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Database/Crop Tiles DataBase")]
+
 public class Object_Database : ScriptableObject
 {
     public List<ObjectData> objectsData;

@@ -3,21 +3,48 @@ using UnityEngine;
 
 public class CropTile : MonoBehaviour
 {
-    public int energyAmount = 1;
-    private bool ready = true;
+    [SerializeField] private GameObject seedlingObject;
+    [SerializeField] private GameObject matureObject;
+    [SerializeField] private CropData cropData; // which crop this tile grows
 
-    public int HarvestFood()
+    private bool ready = false;
+    private int foodAmount = 1;
+    private float timeToMature = 1;
+    private Coroutine growthRoutine;
+
+    private void Start()
     {
-        if (!ready) return 0;
-        ready = false;
-        StartCoroutine(Recharge());
-        return energyAmount;
+        foodAmount = cropData.baseYield;
+        timeToMature = cropData.timeToMature;
+
+        growthRoutine = StartCoroutine(GrowCycle());
     }
 
-    IEnumerator Recharge()
+    public (CropData, int) HarvestFood()
     {
-        yield return new WaitForSeconds(5f); 
+        if (!ready) return (null, 0);
+
+        seedlingObject.SetActive(true);
+        matureObject.SetActive(false);
+        ready = false;
+
+        // Restart growth safely
+        if (growthRoutine != null) StopCoroutine(growthRoutine);
+        growthRoutine = StartCoroutine(GrowCycle());
+
+        // return both type + amount
+        return (cropData, foodAmount);
+    }
+
+    private IEnumerator GrowCycle()
+    {
+        seedlingObject.SetActive(true);
+        matureObject.SetActive(false);
+
+        yield return new WaitForSeconds(timeToMature);
+
+        seedlingObject.SetActive(false);
+        matureObject.SetActive(true);
         ready = true;
     }
 }
-
